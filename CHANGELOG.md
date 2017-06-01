@@ -5,3 +5,7 @@ All notable changes to `laravel-artisan-translations` will be documented in this
 ## 1.0.0 - 2017-06-01
 
 - initial release
+
+## 1.0.1 - 2017-06-01
+
+- Support Auto-Discovery

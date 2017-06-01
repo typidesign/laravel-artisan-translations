@@ -26,15 +26,11 @@
             "Typidesign\\Translations\\": "src"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Typidesign\\Translations\\Test\\": "tests"
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Typidesign\\Translations\\ArtisanTranslationsServiceProvider"
+            ]
         }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit"
-    },
-    "config": {
-        "sort-packages": true
     }
 }
