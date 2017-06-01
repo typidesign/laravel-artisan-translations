@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Typidesign\\Skeleton\\": "src"
+            "Typidesign\\Translations\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Typidesign\\Skeleton\\Test\\": "tests"
+            "Typidesign\\Translations\\Test\\": "tests"
         }
     },
     "scripts": {

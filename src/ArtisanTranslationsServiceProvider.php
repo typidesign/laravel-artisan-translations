@@ -1,6 +1,6 @@
 <?php
 
-namespace Typidesign\ArtisanTranslations;
+namespace Typidesign\Translations;
 
 use Illuminate\Support\ServiceProvider;
 use Typidesign\Console\Commands\AddTranslations;

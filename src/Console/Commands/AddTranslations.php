@@ -1,6 +1,6 @@
 <?php
 
-namespace Typidesign\Console\Commands;
+namespace Typidesign\Translations\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
