@@ -1,6 +1,6 @@
-# Very short description of the package
+# Manage translations in json files.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package gives you an artisan command to manage translations in Laravel 5.4+ json files.
 
 ## Installation
 
@@ -10,22 +10,44 @@ You can install the package via composer:
 composer require typidesign/laravel-artisan-translations
 ```
 
+Now add the service provider in `config/app.php` file:
+
+```php
+'providers' => [
+    // ...
+    Typidesign\Translations\ArtisanTranslationsServiceProvider::class,
+];
+```
+
 ## Usage
 
-``` php
-$skeleton = new Typi Design\Skeleton();
-echo $skeleton->echoPhrase('Hello, Typi Design!');
+### Add translations from a single file
+
+```php
+php artisan translations:add vendor/typicms/pages/src/resources/lang/fr.json
+```
+
+Every translations present in this file will be added to ```/resources/lang/fr.json```.
+
+### Add translations from a directory
+
+```php
+php artisan translations:add vendor/typicms/pages/src/resources/lang
+```
+
+Every translations found in this directory will be added to ```/resources/lang```
+
+### Overwrite translations
+
+By default, translation keys will not be overwritten. You can use the ```--force``` option to overwrite existing keys:
+
+```php
+php artisan translations:add vendor/typicms/pages/src/resources/lang --force
 ```
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
