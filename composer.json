@@ -1,0 +1,40 @@
+{
+    "name": "typidesign/laravel-artisan-translations",
+    "description": "An artisan command to update json translation files.",
+    "keywords": [
+        "typidesign",
+        "laravel-artisan-translations"
+    ],
+    "homepage": "https://github.com/typidesign/laravel-artisan-translations",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel De Backer",
+            "email": "sdebacker@gmail.com",
+            "homepage": "https://typi.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Typidesign\\Skeleton\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Typidesign\\Skeleton\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
