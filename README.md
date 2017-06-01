@@ -1,5 +1,7 @@
 # Manage translations in json files.
 
+[![StyleCI](https://styleci.io/repos/93054359/shield?branch=master)](https://styleci.io/repos/93054359)
+
 This package gives you an artisan command to manage translations in Laravel 5.4+ json files.
 
 ## Installation
