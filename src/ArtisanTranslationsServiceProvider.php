@@ -3,7 +3,7 @@
 namespace Typidesign\Translations;
 
 use Illuminate\Support\ServiceProvider;
-use Typidesign\Console\Commands\AddTranslations;
+use Typidesign\Translations\Console\Commands\AddTranslations;
 
 class ArtisanTranslationsServiceProvider extends ServiceProvider
 {
