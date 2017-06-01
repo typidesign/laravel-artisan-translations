@@ -4,6 +4,7 @@ namespace Typidesign\Translations;
 
 use Illuminate\Support\ServiceProvider;
 use Typidesign\Translations\Console\Commands\AddTranslations;
+use Typidesign\Translations\Console\Commands\RemoveTranslations;
 
 class ArtisanTranslationsServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class ArtisanTranslationsServiceProvider extends ServiceProvider
     {
         $this->commands([
             AddTranslations::class,
+            RemoveTranslations::class,
         ]);
     }
 }

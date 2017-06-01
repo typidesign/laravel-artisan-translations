@@ -41,6 +41,15 @@ Every translations found in this directory will be added to ```/resources/lang``
 
 By default, translation keys will not be overwritten. You can use the ```--force``` option to overwrite existing keys:
 
+### Remove translations
+
+```php
+php artisan translations:remove vendor/typicms/pages/src/resources/lang[/lg.json]
+```
+
+Every translations found in this file/directory will be removed from ```/resources/lang```
+
+
 ```php
 php artisan translations:add vendor/typicms/pages/src/resources/lang --force
 ```
