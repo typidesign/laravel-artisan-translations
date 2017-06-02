@@ -32,7 +32,7 @@ class AddTranslations extends AbstractTranslations
             } else {
                 $translations = $existingTranslations + $newTranslations;
             }
-            ksort($translations);
+            ksort($translations, SORT_STRING | SORT_FLAG_CASE);
 
             $this->put($mainFile, $translations);
 
