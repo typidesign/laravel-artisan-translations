@@ -23,17 +23,17 @@ class AddTranslations extends AbstractTranslations
     {
         foreach ($this->getFiles() as $file) {
             $targetDirectory = resource_path('lang');
-            $mainFile = $targetDirectory.'/'.$file->getBasename();
+            $targetPath = $targetDirectory.'/'.$file->getBasename();
             if ($this->files->missing($targetDirectory)) {
                 $this->files->makeDirectory($targetDirectory);
             }
-            if ($this->files->missing($mainFile)) {
-                $this->files->copy($file->getPathname(), $mainFile);
-                $this->info($mainFile.' created.');
+            if ($this->files->missing($targetPath)) {
+                $this->files->copy($file->getPathname(), $targetPath);
+                $this->info($targetPath.' created.');
                 continue;
             }
 
-            $existingTranslations = $this->getTranslations($mainFile);
+            $existingTranslations = $this->getTranslations($targetPath);
             $newTranslations = $this->getTranslations($file);
 
             if ($this->option('force')) {
@@ -43,9 +43,9 @@ class AddTranslations extends AbstractTranslations
             }
             ksort($translations, SORT_STRING | SORT_FLAG_CASE);
 
-            $this->put($mainFile, $translations);
+            $this->put($targetPath, $translations);
 
-            $this->info(count($translations) - count($existingTranslations).' translations added in '.$mainFile.'.');
+            $this->info(count($translations) - count($existingTranslations).' translations added in '.$targetPath.'.');
         }
     }
 }
