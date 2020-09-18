@@ -4,6 +4,7 @@ namespace Typidesign\Translations\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use SplFileInfo;
 
 abstract class AbstractTranslations extends Command
 {
@@ -25,7 +26,7 @@ abstract class AbstractTranslations extends Command
     /**
      * Get an array containing all translations form a json file.
      */
-    protected function getTranslations(string $file) : array
+    protected function getTranslations(string $file): array
     {
         return $this->files->exists($file) ? (array) json_decode($this->files->get($file)) : [];
     }
@@ -41,17 +42,17 @@ abstract class AbstractTranslations extends Command
     /**
      * Get file(s) from the path argument.
      */
-    protected function getFiles() : array
+    protected function getFiles(): array
     {
-        $fileOrDirectory = base_path($this->argument('path'));
-        if (! $this->files->exists($fileOrDirectory)) {
+        $path = base_path($this->argument('path'));
+        if ($this->files->missing($path)) {
             $this->error($this->argument('path').' is not a file or a directory.');
             exit();
         }
-        if ($this->files->isFile($fileOrDirectory)) {
-            $files = [$fileOrDirectory];
-        } elseif ($this->files->isDirectory($fileOrDirectory)) {
-            $files = $this->files->files($fileOrDirectory);
+        if ($this->files->isFile($path)) {
+            $files = [new SplFileInfo($path)];
+        } elseif ($this->files->isDirectory($path)) {
+            $files = $this->files->files($path);
         }
 
         return $files;
