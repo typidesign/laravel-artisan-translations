@@ -22,7 +22,7 @@ class AddTranslations extends AbstractTranslations
     public function handle()
     {
         foreach ($this->getFiles() as $file) {
-            $targetDirectory = resource_path('lang');
+            $targetDirectory = lang_path();
             $targetPath = $targetDirectory.'/'.$file->getBasename();
             if ($this->files->missing($targetDirectory)) {
                 $this->files->makeDirectory($targetDirectory);
@@ -30,6 +30,7 @@ class AddTranslations extends AbstractTranslations
             if ($this->files->missing($targetPath)) {
                 $this->files->copy($file->getPathname(), $targetPath);
                 $this->info($targetPath.' created.');
+
                 continue;
             }
 

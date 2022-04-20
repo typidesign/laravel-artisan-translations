@@ -26,34 +26,33 @@ Now add the service provider in `config/app.php` file:
 ### Add translations from a single file
 
 ```php
-php artisan translations:add vendor/typicms/pages/src/resources/lang/fr.json
+php artisan translations:add vendor/typicms/pages/src/lang/fr.json
 ```
 
-Every translations present in this file will be added to ```/resources/lang/fr.json```.
+Every translations present in this file will be added to `/lang/fr.json`.
 
 ### Add translations from a directory
 
 ```php
-php artisan translations:add vendor/typicms/pages/src/resources/lang
+php artisan translations:add vendor/typicms/pages/src/lang
 ```
 
-Every translations found in this directory will be added to ```/resources/lang```
+Every translations found in this directory will be added to `/lang`
 
 ### Overwrite translations
 
-By default, translation keys will not be overwritten. You can use the ```--force``` option to overwrite existing keys:
+By default, translation keys will not be overwritten. You can use the `--force` option to overwrite existing keys:
 
 ### Remove translations
 
 ```php
-php artisan translations:remove vendor/typicms/pages/src/resources/lang[/lg.json]
+php artisan translations:remove vendor/typicms/pages/src/lang[/lg.json]
 ```
 
-Every translations found in this file/directory will be removed from ```/resources/lang```
-
+Every translations found in this file/directory will be removed from `/lang`
 
 ```php
-php artisan translations:add vendor/typicms/pages/src/resources/lang --force
+php artisan translations:add vendor/typicms/pages/src/lang --force
 ```
 
 ## Changelog

@@ -21,7 +21,7 @@ class RemoveTranslations extends AbstractTranslations
     public function handle()
     {
         foreach ($this->getFiles() as $file) {
-            $mainFile = resource_path('lang/'.basename($file));
+            $mainFile = lang_path(basename($file));
 
             $existingTranslations = $this->getTranslations($mainFile);
             $newTranslations = $this->getTranslations($file);
