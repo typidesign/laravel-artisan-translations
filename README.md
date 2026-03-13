@@ -1,6 +1,6 @@
 # Manage translations in json files
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/typidesign/laravel-artisan-translations.svg?style=flat-square)](https://packagist.org/packages/typidesign/laravel-artisan-translations)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/typidesign/laravel-artisan-translations.svg)](https://packagist.org/packages/typidesign/laravel-artisan-translations)
 [![Tests](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/tests.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/tests.yml)
 [![PHPStan](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/phpstan.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/phpstan.yml)
 [![Rector](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/rector.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/rector.yml)
