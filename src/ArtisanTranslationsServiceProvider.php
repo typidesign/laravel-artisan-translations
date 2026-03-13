@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Typidesign\Translations;
 
 use Illuminate\Support\ServiceProvider;
@@ -11,14 +13,12 @@ class ArtisanTranslationsServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
-    {
-    }
+    public function boot(): void {}
 
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         $this->commands([
             AddTranslations::class,

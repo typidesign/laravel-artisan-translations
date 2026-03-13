@@ -1,8 +1,12 @@
-# Manage translations in json files.
+# Manage translations in json files
 
-[![StyleCI](https://styleci.io/repos/93054359/shield?branch=master)](https://styleci.io/repos/93054359)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/typidesign/laravel-artisan-translations.svg?style=flat-square)](https://packagist.org/packages/typidesign/laravel-artisan-translations)
+[![Tests](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/tests.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/tests.yml)
+[![PHPStan](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/phpstan.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/phpstan.yml)
+[![Rector](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/rector.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/rector.yml)
+[![Pint](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/pint.yml/badge.svg)](https://github.com/typidesign/laravel-artisan-translations/actions/workflows/pint.yml)
 
-This package gives you an artisan command to manage translations in Laravel 5.4+ json files.
+This package provides artisan commands to manage translations in Laravel JSON files.
 
 ## Installation
 
@@ -12,47 +16,41 @@ You can install the package via composer:
 composer require typidesign/laravel-artisan-translations
 ```
 
-Now add the service provider in `config/app.php` file:
-
-```php
-'providers' => [
-    // ...
-    Typidesign\Translations\ArtisanTranslationsServiceProvider::class,
-];
-```
+The service provider will be auto-discovered by Laravel.
 
 ## Usage
 
 ### Add translations from a single file
 
-```php
+```bash
 php artisan translations:add vendor/typicms/pages/src/lang/fr.json
 ```
 
-Every translations present in this file will be added to `/lang/fr.json`.
+Every translation present in this file will be added to `lang/fr.json`.
 
 ### Add translations from a directory
 
-```php
+```bash
 php artisan translations:add vendor/typicms/pages/src/lang
 ```
 
-Every translations found in this directory will be added to `/lang`
+Every translation found in this directory will be added to `lang/`.
 
 ### Overwrite translations
 
-By default, translation keys will not be overwritten. You can use the `--force` option to overwrite existing keys:
+By default, existing translation keys will not be overwritten. Use the `--force` option to overwrite them:
+
+```bash
+php artisan translations:add vendor/typicms/pages/src/lang --force
+```
 
 ### Remove translations
 
-```php
-php artisan translations:remove vendor/typicms/pages/src/lang[/lg.json]
-```
+Remove translations found in a file or directory from `lang/`:
 
-Every translations found in this file/directory will be removed from `/lang`
-
-```php
-php artisan translations:add vendor/typicms/pages/src/lang --force
+```bash
+php artisan translations:remove vendor/typicms/pages/src/lang/fr.json
+php artisan translations:remove vendor/typicms/pages/src/lang
 ```
 
 ## Changelog
@@ -71,10 +69,6 @@ If you discover any security related issues, please email samuel@typidesign.be i
 
 - [Samuel De Backer](https://github.com/sdebacker)
 - [All Contributors](../../contributors)
-
-## About Typi Design
-
-Typi Design is a webdesign agency based in Brussels, Belgium.
 
 ## License
 

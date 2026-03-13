@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Typidesign\Translations\Console\Commands;
 
 class RemoveTranslations extends AbstractTranslations
@@ -18,13 +20,13 @@ class RemoveTranslations extends AbstractTranslations
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ($this->getFiles() as $file) {
-            $mainFile = lang_path(basename($file));
+            $mainFile = lang_path($file->getBasename());
 
             $existingTranslations = $this->getTranslations($mainFile);
-            $newTranslations = $this->getTranslations($file);
+            $newTranslations = $this->getTranslations($file->getPathname());
 
             $translations = array_diff($existingTranslations, $newTranslations);
 

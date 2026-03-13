@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Typidesign\Translations\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -9,52 +11,65 @@ use SplFileInfo;
 abstract class AbstractTranslations extends Command
 {
     /**
-     * The filesystem instance.
-     */
-    protected $files;
-
-    /**
      * Create a new command instance.
      */
-    public function __construct(Filesystem $files)
+    public function __construct(protected Filesystem $filesystem)
     {
         parent::__construct();
-
-        $this->files = $files;
     }
 
     /**
      * Get an array containing all translations form a json file.
+     *
+     * @return array<string, string>
      */
     protected function getTranslations(string $file): array
     {
-        return $this->files->exists($file) ? (array) json_decode($this->files->get($file)) : [];
+        if (! $this->filesystem->exists($file)) {
+            return [];
+        }
+
+        /** @var array<string, string> $translations */
+        $translations = (array) json_decode((string) $this->filesystem->get($file));
+
+        return $translations;
     }
 
     /**
      * Update the json file with new object.
+     *
+     * @param  array<string, string>  $translations
      */
-    protected function put(string $file, array $translations)
+    protected function put(string $file, array $translations): void
     {
-        $this->files->put($file, json_encode($translations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT));
+        $this->filesystem->put($file, (string) json_encode($translations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_FORCE_OBJECT));
     }
 
     /**
      * Get file(s) from the path argument.
+     *
+     * @return array<int, SplFileInfo>
      */
     protected function getFiles(): array
     {
-        $path = base_path($this->argument('path'));
-        if ($this->files->missing($path)) {
-            $this->error($this->argument('path').' is not a file or a directory.');
+        /** @var string $pathArgument */
+        $pathArgument = $this->argument('path');
+        $path = base_path($pathArgument);
+
+        if ($this->filesystem->missing($path)) {
+            $this->error($pathArgument.' is not a file or a directory.');
             exit();
         }
-        if ($this->files->isFile($path)) {
-            $files = [new SplFileInfo($path)];
-        } elseif ($this->files->isDirectory($path)) {
-            $files = $this->files->files($path);
+
+        if ($this->filesystem->isFile($path)) {
+            return [new SplFileInfo($path)];
         }
 
-        return $files;
+        if ($this->filesystem->isDirectory($path)) {
+            /** @var array<int, SplFileInfo> */
+            return $this->filesystem->files($path);
+        }
+
+        return [];
     }
 }

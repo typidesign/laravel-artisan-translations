@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Typidesign\Translations\Console\Commands;
 
 class AddTranslations extends AbstractTranslations
@@ -19,29 +21,31 @@ class AddTranslations extends AbstractTranslations
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         foreach ($this->getFiles() as $file) {
             $targetDirectory = lang_path();
             $targetPath = $targetDirectory.'/'.$file->getBasename();
-            if ($this->files->missing($targetDirectory)) {
-                $this->files->makeDirectory($targetDirectory);
+            if ($this->filesystem->missing($targetDirectory)) {
+                $this->filesystem->makeDirectory($targetDirectory);
             }
-            if ($this->files->missing($targetPath)) {
-                $this->files->copy($file->getPathname(), $targetPath);
+
+            if ($this->filesystem->missing($targetPath)) {
+                $this->filesystem->copy($file->getPathname(), $targetPath);
                 $this->info($targetPath.' created.');
 
                 continue;
             }
 
             $existingTranslations = $this->getTranslations($targetPath);
-            $newTranslations = $this->getTranslations($file);
+            $newTranslations = $this->getTranslations($file->getPathname());
 
             if ($this->option('force')) {
                 $translations = array_merge($existingTranslations, $newTranslations);
             } else {
                 $translations = $existingTranslations + $newTranslations;
             }
+
             ksort($translations, SORT_STRING | SORT_FLAG_CASE);
 
             $this->put($targetPath, $translations);
